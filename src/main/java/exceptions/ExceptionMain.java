@@ -8,6 +8,9 @@ package exceptions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,28 +36,29 @@ public class ExceptionMain {
             return br.readLine();
         }
     }
-    
-   
 
-    public static void main(String[] args) {
-        int n = 3;
-        int d = -1;
-        
+    public static void main(String[] args) throws UsuarioNoRegistradoException {
+
         try {
-            int operacion = n / d;
-            
-            if (d < 0) {
-                throw new DenominadorNegativoException("El denominador no puede ser negativo");
-            } else if (d == 0) {
-                throw new DenominadorIgualAZeroException("El denominador no puede ser zero");
-            } else if (d == 0 || n == 0) {
-                throw new VariablesNulasException("Las variables no pueden ser nulas");
-            } else {
-                System.out.println("Todo correcto");
-            }
-            
-        } catch (OperacionFallidaException e) {
-            e.getMessage();
+            Scanner in = new Scanner(System.in);
+
+            String nombre = "";
+            int psw = 0;
+            int psw2 = 0;
+
+            System.out.println("Nombre; ");
+            nombre = in.nextLine();
+
+            System.out.println("Password; ");
+            psw = in.nextInt();
+
+            System.out.println("Confirma la password; ");
+            psw2 = in.nextInt();
+
+            Usuario u = new Usuario(nombre, psw, psw2);
+
+        } catch (UsuarioNoRegistradoException ex) {
+            Logger.getLogger(ExceptionMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         /*try {
@@ -64,21 +68,21 @@ public class ExceptionMain {
             e.printStackTrace();
         }*/
 
-        /*double d = 0;
+ /*double d = 0;
         try {
-            d = division(3, 1);
+            d = division(3, 0);
             System.out.println(d);
             
         }catch (Exception ex) {
             ex.getMessage();
         } finally {
             if (d == 3) { 
-                Sysouttem.out.println("Resultado es igual a 3");
+                System.out.println("Resultado es igual a 3");
                  
             } else { 
                 System.out.println("Resultado diferente");
             } 
-        } */
+        }*/
     }
 
 }
