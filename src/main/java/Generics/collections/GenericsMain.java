@@ -75,8 +75,11 @@ public class GenericsMain<T> {
 
         listaT.add(1);
         listaT.add(2);
+        listaT.add(3);
+        listaT.add(4);
         
         int objeto = ultimoDeLaLista(listaT);
+        System.out.println(objeto);
 
         //mediaDeUnaLista
         List<Double> listD = new ArrayList<>();
