@@ -6,8 +6,45 @@
 package Generics.collections;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+class AlumnoEdadComparator implements Comparator<Alumno> {
+
+    @Override
+    // return -1 si o1 < o2, 0 si o1 = o2 y +1 si o1 > 02
+    public int compare(Alumno t, Alumno t1) {
+        if (t.getEdad() < t1.getEdad()) {
+            return -1;
+        } else if (t.getEdad() == t1.getEdad()) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+}
+
+class EstudianteNotaComparator implements Comparator<Estudiante> {
+
+    @Override
+    public int compare(Estudiante t, Estudiante t1) {
+        if (t.getNota() < t1.getNota()) {
+            return -1;
+        } else if (t.getNota() == t1.getNota()) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+}
 
 /**
  *
@@ -69,9 +106,88 @@ public class GenericsMain<T> {
     }
 
     public static void main(String[] args) {
+        
+        List<Estudiante> listaEstudiante = new ArrayList<>();
+        
+        listaEstudiante.add(new Estudiante("David", 7.8));
+        listaEstudiante.add(new Estudiante("Eloi", 5.6));
+        listaEstudiante.add(new Estudiante("Gerard", 9.5));
+        listaEstudiante.add(new Estudiante("Marc", 6.5));
+        listaEstudiante.add(new Estudiante("Arnau", 8.0));
+        
+        Collections.sort(listaEstudiante);
+        System.out.println(listaEstudiante);
+        
+        Collections.sort(listaEstudiante, new EstudianteNotaComparator());
+        System.out.println(listaEstudiante);
+        
 
+        /*List<Alumno> list = new ArrayList<>();
+        list.add(new Alumno("pepe", 20));
+        list.add(new Alumno("david", 19));
+        list.add(new Alumno("marc", 17));
+        list.add(new Alumno("arnau", 30));
+
+        Collections.sort(list, new AlumnoEdadComparator());
+        System.out.println(list);*/
+
+ /*List<String> listS = new ArrayList<>();
+
+        listS.add("Madrid");
+        listS.add("Barcelona");
+        listS.add("Sevilla");
+        listS.add("Malaga");
+        
+        Collections.reverse(listS);
+        Collections.shuffle(listS);
+        
+        System.out.println(listS);
+        
+        List<Alumno> list = new ArrayList();
+        
+        list.add(new Alumno("David", 10));
+        list.add(new Alumno("Eloi", 11));
+        list.add(new Alumno("Gerard", 12));
+        
+        Collections.sort(list);
+        
+        System.out.println(list);
+        
+        
+        /*Set <Alumno> set = new HashSet<>();
+        set.add(new Alumno("David", 19));
+        set.add(new Alumno("Guillem", 20));
+        set.add(new Alumno("Eloi", 20));
+        set.add(new Alumno("Eloi", 19));
+        
+        for (Iterator it = set.iterator(); it.hasNext(); ) {
+			System.out.println(it.next());
+        }*/
+
+ /*Map<Integer, Alumno> map = new HashMap<>();
+
+        map.put(1, new Alumno("Pepe", 34));
+        map.put(1, new Alumno("Jose", 44));
+        map.put(2, new Alumno("David", 40));
+        map.put(3, new Alumno("David", 20));
+
+        Alumno a = map.get(3);
+
+        System.out.println(a);
+
+        Set<Integer> claves = map.keySet();
+
+        for (Iterator it = claves.iterator(); it.hasNext();) {
+            System.out.println(map.get(it.next()));
+        }
+
+        Collection<Alumno> col = map.values();
+
+        for (Iterator it = col.iterator(); it.hasNext();) {
+            System.out.println(it.next());
+        }*/
         //ultimoDeLaLista
-        List<Integer> listaT = new ArrayList<>();
+        /*List<Integer> listaT = new ArrayList<>();
 
         listaT.add(1);
         listaT.add(2);
