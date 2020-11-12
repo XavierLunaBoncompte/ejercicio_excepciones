@@ -33,7 +33,7 @@ public class ExcerciciMain extends MatcherImplementation{
     public static void main(String[] args) {
         MatcherImplementation match = new MatcherImplementation();
         //Persona p = new Persona(50, Sexo.HOMBRE, 21, true, OrientacionSexual.HETERO, Formacion.BACHILLARATO, OrientacionPolitica.CENTRO);
-        //Persona p = new Persona(51, Sexo.MUJER, 29, false, OrientacionSexual.LESBIANA, Formacion.DOCTORADO, OrientacionPolitica.IZQUIERDA);
+        //Persona p = new Persona(51, Sexo.MUJER, 23, false, OrientacionSexual.LESBIANA, Formacion.DOCTORADO, OrientacionPolitica.IZQUIERDA);
         Persona p = new Persona(52, Sexo.MUJER, 42, true, OrientacionSexual.BISEXUAL, Formacion.GRADO, OrientacionPolitica.IZQUIERDA);
         
         List<Persona> listMatcher = new ArrayList<>();
@@ -42,8 +42,8 @@ public class ExcerciciMain extends MatcherImplementation{
         listMatcher.add( new Persona(03, Sexo.MUJER, 19, false, OrientacionSexual.LESBIANA, Formacion.GRADO_MEDIO, OrientacionPolitica.IZQUIERDA));
         listMatcher.add( new Persona(04, Sexo.HOMBRE, 27, true, OrientacionSexual.HETERO, Formacion.GRADO, OrientacionPolitica.DERECHA));
         listMatcher.add( new Persona(05, Sexo.MUJER, 20, true, OrientacionSexual.HETERO, Formacion.GRADO_SUPERIOR, OrientacionPolitica.CENTRO));
-        listMatcher.add( new Persona(06, Sexo.HOMBRE, 43, false, OrientacionSexual.BISEXUAL, Formacion.CATEDRARTICO, OrientacionPolitica.IZQUIERDA));
-        listMatcher.add( new Persona(07, Sexo.MUJER, 38, true, OrientacionSexual.HETERO, Formacion.DOCTORADO, OrientacionPolitica.DERECHA));
+        listMatcher.add( new Persona(06, Sexo.HOMBRE, 43, true, OrientacionSexual.BISEXUAL, Formacion.CATEDRARTICO, OrientacionPolitica.IZQUIERDA));
+        listMatcher.add( new Persona(07, Sexo.MUJER, 38, false, OrientacionSexual.HETERO, Formacion.DOCTORADO, OrientacionPolitica.DERECHA));
         
         Persona personaTrobada = match.matches(p, listMatcher);
         
