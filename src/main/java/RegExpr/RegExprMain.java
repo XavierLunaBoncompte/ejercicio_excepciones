@@ -14,15 +14,21 @@ import java.util.regex.Pattern;
  */
 public class RegExprMain {
     
-    static boolean validateNIF(String nif) {
-        Pattern p = Pattern.compile("\\d{8}\\p{Upper}"); 
+    public static boolean validateNIF(String nif) {
+        Pattern p = Pattern.compile("\\d{8}[A-Z&&[^AEIOU]]"); 
         Matcher m = p.matcher(nif);
         
         return m.matches();
         
     } 
     
-    static boolean validateTLF(String tlf) {
+    static boolean validateNIE(String nie) {
+        Pattern p = Pattern.compile("[A-Z]\\d{7}[A-Z]");
+        Matcher m = p.matcher(nie);
+        return m.matches();
+    }
+    
+    public static boolean validateTLF(String tlf) {
         Pattern p = Pattern.compile("\\d{3}\\s\\d{2}\\s\\d{2}\\s\\d{2}"); 
         Matcher m = p.matcher(tlf);
         
@@ -30,7 +36,7 @@ public class RegExprMain {
         
     } 
     
-    static boolean validateTLFEspañol(String tlfE) {
+    public static boolean validateTLFEspañol(String tlfE) {
         Pattern p = Pattern.compile("\\+34\\s\\d{3}\\s\\d{2}\\s\\d{2}\\s\\d{2}"); 
         Matcher m = p.matcher(tlfE);
         
@@ -38,7 +44,7 @@ public class RegExprMain {
         
     } 
     
-    static boolean validateMatriculaCoche(String matricula) {
+    public static boolean validateMatriculaCoche(String matricula) {
         Pattern p = Pattern.compile("\\d{4}\\s[A-Z&&[^AEIOU]]{3}"); 
         Matcher m = p.matcher(matricula);
         
@@ -46,7 +52,7 @@ public class RegExprMain {
         
     } 
     
-    static boolean validateFecha(String fecha) {
+    public static boolean validateFecha(String fecha) {
         Pattern p = Pattern.compile("(0[1-9]|[12][0-9]|^3[01])\\/(0[1-9]|1[012])\\/[0-9]{4}"); 
         Matcher m = p.matcher(fecha);
         
@@ -54,9 +60,17 @@ public class RegExprMain {
         
     } 
     
-    static boolean validateEmail(String email) {
-        Pattern p = Pattern.compile("^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9-]+)$"); 
+    public static boolean validateEmail(String email) {
+        Pattern p = Pattern.compile("^[a-zA-Z0-9#._-]+@[a-zA-Z]+(\\.[a-zA-Z]+)$"); 
         Matcher m = p.matcher(email);
+        
+        return m.matches();
+        
+    } 
+    
+    public static boolean validateFormat(String format) {
+        Pattern p = Pattern.compile("^((\\p{Alpha}{2})(\\d{3}))\\2$"); 
+        Matcher m = p.matcher(format);
         
         return m.matches();
         
@@ -74,6 +88,8 @@ public class RegExprMain {
      * Expresion regular que valide una fecha formato dd/mm/aaaa
      * 
      * Expresion regular que valide un email
+     * 
+     * Expresion regular que valide una clave ne forma AA999AA.
      */
     public static void main(String[] args) {
         
@@ -92,6 +108,16 @@ public class RegExprMain {
         System.out.println(nif + "; " + validarNif);
         System.out.println(nif2 + "; " + validarNif2);
         System.out.println(nif3 + "; " + validarNif3 + "\n");
+        
+        //VALIDAR NIE
+        
+        System.out.println("VALIDAR NIF;\n");
+        
+        String nie = "K4629846P";
+        
+        boolean validarNie = validateNIE(nie);
+        
+        System.out.println(nie + "; " + validarNie + "\n");
         
         //VALIDAR TELEFONO MOBIL
         
@@ -162,7 +188,18 @@ public class RegExprMain {
         
         boolean validarEmail = validateEmail(email);
 
-        System.out.println(email + "; " + validarEmail);
+        System.out.println(email + "; " + validarEmail + "\n");
+        
+        //VALIDSR FORMAT
+        
+        System.out.println("VALIDAR FORMAT;\n");
+        
+        String format = "AA999AA";
+        
+        boolean validarFormat = validateFormat(format);
+
+        System.out.println(format + "; " + validarFormat);
+        
         
         
         /*Pattern p = Pattern.compile("a*b");
