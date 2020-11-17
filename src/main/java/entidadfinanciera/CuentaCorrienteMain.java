@@ -37,7 +37,7 @@ public class CuentaCorrienteMain<T>{
         List<CuentaCorrienteADebito> cuentasDebito = new ArrayList<>();
         List<CuentaCorrienteACredito> cuentasCredito = new ArrayList<>();
 
-        CuentaCorrienteACredito cG1 = new CuentaCorrienteACreditoGold("Xavier", 100.50);
+        CuentaCorrienteACredito cG1 = new CuentaCorrienteACreditoGold("Guillem", 100.50);
         cG1.ingresa(3000.25);
         cG1.abona(500.25);
         double saldoActualCreditoGold = cG1.getSaldo();
