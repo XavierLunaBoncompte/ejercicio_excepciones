@@ -5,6 +5,9 @@
  */
 package entidadfinanciera;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author lubo1
@@ -12,10 +15,14 @@ package entidadfinanciera;
 public abstract class CuentaCorritenteImpl implements CuentaCorriente {
 
     private String titular;
-    private double saldo;
+    protected double saldo;
 
-    public CuentaCorritenteImpl(String titular, double saldo) {
+    public CuentaCorritenteImpl(String titular, double saldo) throws Exception {
+        if (titular == " ") {
+            throw new NullPointerException("La variable nombre no puede estar vacia");
+        }
         this.titular = titular;
+
         this.saldo = saldo;
     }
 
@@ -34,7 +41,16 @@ public abstract class CuentaCorritenteImpl implements CuentaCorriente {
 
     @Override
     public void ingresa(double ingreso) {
-        saldo += ingreso;
+        if (ingreso <= 0) {
+            try {
+                throw new ElIngresoNoPuedeSerNegativoOIgualAZeroException("El ingreso tiene que ser mayor que 0.");
+            } catch (ElIngresoNoPuedeSerNegativoOIgualAZeroException ex) {
+                Logger.getLogger(CuentaCorritenteImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            saldo += ingreso;
+        }
+
     }
 
 }

@@ -7,7 +7,9 @@ package entidadfinanciera;
 
 /**
  *
- * @author lubo1
+ * 
+ * Acabar de implementar las clases concretas y hacer los tests correspondientes
+ * 
  */
 public interface CuentaCorriente {
 

@@ -5,14 +5,31 @@
  */
 package entidadfinanciera;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author lubo1
  */
 public class CuentaCorrienteACreditoPlatinum extends CuentaCorrienteACredito {
 
-    public CuentaCorrienteACreditoPlatinum(String titular, double saldo) {
+    public CuentaCorrienteACreditoPlatinum(String titular, double saldo) throws Exception {
         super(titular, saldo);
+
+        if (saldo < -5000) {
+            throw new Exception("El saldo no puede ser menor que el descubierto admitido", new IllegalArgumentException());
+        }
+    }
+
+    public static boolean validateOperacionCreditoPlatinum(String posibleOperacion) {
+        Pattern p = Pattern.compile("^[0-9]+(\\.?[0-9]*)|^-?\\d+(?:\\.\\d+)");
+        Matcher m = p.matcher(posibleOperacion);
+
+        return m.matches();
+
     }
 
     /**
@@ -23,7 +40,33 @@ public class CuentaCorrienteACreditoPlatinum extends CuentaCorrienteACredito {
      */
     @Override
     public void abona(double abono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double mSaldo = this.getSaldo();
+        double mPosibleSaldo = mSaldo - abono;
+
+        String conversion = String.valueOf(mPosibleSaldo);
+
+        boolean validacionOperacionBancaria = validateOperacionCreditoPlatinum(conversion);
+
+        if (validacionOperacionBancaria == false) {
+            try {
+                throw new Exception("La operacion no ha sido validada.");
+            } catch (Exception ex) {
+                Logger.getLogger(CuentaCorrienteADebito.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            if (mPosibleSaldo < -5000.00) {
+                try {
+                    throw new AbonoMayorQueSaldoException("El abono no puede ser mayor que el saldo de la cuenta + el descubierto admitido de 5000 euros.");
+                } catch (AbonoMayorQueSaldoException ex) {
+                    Logger.getLogger(CuentaCorrienteADebito.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                saldo -= abono;
+            }
+
+        }
     }
 
 }

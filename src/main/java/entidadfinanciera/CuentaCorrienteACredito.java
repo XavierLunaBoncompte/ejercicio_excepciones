@@ -5,14 +5,23 @@
  */
 package entidadfinanciera;
 
+
+
 /**
  *
  * @author lubo1
  */
-public abstract class CuentaCorrienteACredito extends CuentaCorritenteImpl {
+public abstract class CuentaCorrienteACredito extends CuentaCorritenteImpl implements Comparable<CuentaCorrienteACredito> {
 
-    public CuentaCorrienteACredito(String titular, double saldo) {
+    public CuentaCorrienteACredito(String titular, double saldo) throws Exception {
         super(titular, saldo);
     }
+
+    @Override
+    public int compareTo(CuentaCorrienteACredito t) {
+        return this.getTitular().compareTo(t.getTitular());
+    }
+    
+    
 
 }
