@@ -19,13 +19,13 @@ public class CuentaCorrienteACreditoGold extends CuentaCorrienteACredito {
     public CuentaCorrienteACreditoGold(String titular, double saldo) throws Exception {
         super(titular, saldo);
 
-        if (saldo < -3000) {
-            throw new Exception("El saldo no puede ser menor que el descubierto admitido", new IllegalArgumentException());
+        if (saldo < 0) {
+            throw new Exception("El saldo no puede ser menor que 0", new IllegalArgumentException());
         }
     }
 
     public static boolean validateOperacionCreditoGold(String posibleOperacion) {
-        Pattern p = Pattern.compile("^[0-9]+(\\.?[0-9]*)|^-?\\d+(?:\\.\\d+)");
+        Pattern p = Pattern.compile("^[0-9]+(\\.?[0-9]*)|^-?\\d+(?:\\.\\d+)"); //|^-?\\d+(?:\\.\\d+)
         Matcher m = p.matcher(posibleOperacion);
 
         return m.matches();
@@ -55,7 +55,7 @@ public class CuentaCorrienteACreditoGold extends CuentaCorrienteACredito {
             }
 
         } else {
-            if (mPosibleSaldo < -3000.00) {
+            if (mPosibleSaldo + 3000 <= 0) {
                 try {
                     throw new AbonoMayorQueSaldoException("El abono no puede ser mayor que el saldo de la cuenta + el descubierto admitido de 3000 euros.");
                 } catch (AbonoMayorQueSaldoException ex) {

@@ -19,8 +19,8 @@ public class CuentaCorrienteACreditoPlatinum extends CuentaCorrienteACredito {
     public CuentaCorrienteACreditoPlatinum(String titular, double saldo) throws Exception {
         super(titular, saldo);
 
-        if (saldo < -5000) {
-            throw new Exception("El saldo no puede ser menor que el descubierto admitido", new IllegalArgumentException());
+        if (saldo < 0) {
+            throw new Exception("El saldo no puede ser menor que 0", new IllegalArgumentException());
         }
     }
 
@@ -55,7 +55,7 @@ public class CuentaCorrienteACreditoPlatinum extends CuentaCorrienteACredito {
             }
 
         } else {
-            if (mPosibleSaldo < -5000.00) {
+            if (mPosibleSaldo + 5000 <= 0) {
                 try {
                     throw new AbonoMayorQueSaldoException("El abono no puede ser mayor que el saldo de la cuenta + el descubierto admitido de 5000 euros.");
                 } catch (AbonoMayorQueSaldoException ex) {

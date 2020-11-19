@@ -18,9 +18,15 @@ public class GenericMain {
         /*Caixa caixa1 = new Caixa("Cadena");
         Caixa caixa2 = new Caixa(1);
         
-        String content= caixa1.getContent();*/
+        String content = (String) caixa2.getContent();
+        System.out.println(content);*/
         
         //CaixaGenerica caixa1 = new CaixaGenerica();
+        
+        CaixaGenerica<String> caixa1 = new CaixaGenerica<String>("contenido generico");
+        CaixaGenerica<Integer> caixa2 = new CaixaGenerica<Integer>(2);
+        
+        Integer content = caixa2.getContent();
     }
     
 }

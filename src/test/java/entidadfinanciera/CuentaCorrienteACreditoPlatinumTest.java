@@ -22,23 +22,35 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public class CuentaCorrienteACreditoPlatinumTest {
     
+    private CuentaCorrienteACreditoPlatinum instance1;
+    private CuentaCorrienteACreditoPlatinum instance2;
+    private CuentaCorrienteACreditoPlatinum instance3;
+    
     public CuentaCorrienteACreditoPlatinumTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("Iniciando test...");
     }
     
     @AfterClass
     public static void tearDownClass() {
+        System.out.println("Finalizando test...");
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        instance1 = new CuentaCorrienteACreditoPlatinum("Eloi", 1900);
+        instance2 = new CuentaCorrienteACreditoPlatinum("Anna", 500.33);
+        instance3 = new CuentaCorrienteACreditoPlatinum("Juan", 890.32);
     }
     
     @After
     public void tearDown() {
+        instance1 = null;
+        instance2 = null;
+        instance3 = null;
     }
 
     /**
@@ -72,6 +84,15 @@ public class CuentaCorrienteACreditoPlatinumTest {
         CuentaCorrienteACreditoPlatinum instance = new CuentaCorrienteACreditoPlatinum("Guillem", 1300.34);
         instance.abona(abono);
         System.out.println("Saldo; " + instance.getSaldo());
+        
+        instance1.abona(20);
+        System.out.println("Saldo; " + instance1.getSaldo());
+        
+        instance2.abona(60);
+        System.out.println("Saldo; " + instance2.getSaldo());
+        
+        instance3.abona(1000);
+        System.out.println("Saldo; " + instance3.getSaldo());
     }
     
 }

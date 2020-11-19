@@ -21,24 +21,35 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @author lubo1
  */
 public class CuentaCorrienteACreditoGoldTest {
+    private CuentaCorrienteACreditoGold instance1;
+    private CuentaCorrienteACreditoGold instance2;
+    private CuentaCorrienteACreditoGold instance3;
     
     public CuentaCorrienteACreditoGoldTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("Iniciando test...");
     }
     
     @AfterClass
     public static void tearDownClass() {
+        System.out.println("Finalizando test...");
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        instance1 = new CuentaCorrienteACreditoGold("Mario", 600.34);
+        instance2 = new CuentaCorrienteACreditoGold("Gerard", 1329.65);
+        instance3 = new CuentaCorrienteACreditoGold("Laura", 700.99);
     }
     
     @After
     public void tearDown() {
+        instance1 = null;
+        instance2 = null;
+        instance3 = null;
     }
     
     public void testValidateOperacionCreditoGold() {
@@ -71,6 +82,17 @@ public class CuentaCorrienteACreditoGoldTest {
         CuentaCorrienteACreditoGold instance = new CuentaCorrienteACreditoGold("Marc", 1300.34);
         instance.abona(abono);
         System.out.println("Saldo; " + instance.getSaldo());
+        
+        instance1.abona(100.34);
+        System.out.println("Saldo; " + instance1.getSaldo());
+        
+        instance2.abona(300.55);
+        System.out.println("Saldo; " + instance2.getSaldo());
+        
+        instance3.abona(20);
+        System.out.println("Saldo; " + instance3.getSaldo());
+        
+        //assertEquals(300, instance1.abona(300.34).getSaldo(), abono);
     }
     
 }
